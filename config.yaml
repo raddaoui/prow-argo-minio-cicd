@@ -36,8 +36,8 @@ postsubmits:
 presubmits:
   raddaoui/flask_app_cicd_demo:
   - name: workflow-test-presubmit
-    trigger: "(?m)^/test unit2"
-    rerun_command: "/test unit2"
+    trigger: "(?m)^/test workflow"
+    rerun_command: "/test workflow"
     context: workflow-test-presubmit
     always_run: true               # Run for every PR, or only when requested.
     skip_report: false             # Whether to skip setting a status on GitHub.
@@ -45,4 +45,4 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: docker.io/raddaoui/raddaoui-cicd:1.0
+      - image: docker.io/raddaoui/raddaoui-cicd:latest
