@@ -32,6 +32,17 @@ postsubmits:
     max_concurrency: 10   # Run no more than this number concurrently.
     branches:             # Only run against these branches.
     - master
+  - name: release-postsubmit
+    agent: kubernetes
+    spec:
+      containers:
+      - image: docker.io/raddaoui/raddaoui-cicd:5.0
+        env:
+        - name: workflow_chart
+          value: release_workflow
+    max_concurrency: 10   # Run no more than this number concurrently.
+    branches:             # Only run against these branches.
+    - master
 
 presubmits:
   raddaoui/flask_app_cicd_demo:
@@ -45,4 +56,7 @@ presubmits:
     max_concurrency: 10
     spec:
       containers:
-      - image: docker.io/raddaoui/raddaoui-cicd:latest
+      - image: docker.io/raddaoui/raddaoui-cicd:5.0
+        env:
+        - name: workflow_chart
+          value: testing_workflow
